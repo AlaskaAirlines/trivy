@@ -98,8 +98,7 @@ func (c Client) NeedsUpdate(cliVersion string, light, skip bool) (bool, error) {
 	if err != nil {
 		log.Logger.Debugf("There is no valid metadata file: %s", err)
 		if skip {
-			log.Logger.Error("The first run cannot skip downloading DB")
-			return false, xerrors.New("--skip-update cannot be specified on the first run")
+			return false, nil
 		}
 		metadata = db.Metadata{} // suppress a warning
 	}
