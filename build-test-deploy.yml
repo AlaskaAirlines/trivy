@@ -84,7 +84,7 @@ stages:
                 Dockerimagename: 'platform/trivy'
                 Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
                 Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile' 
-                Dockerimagetag: '$(Build.BuildNumber)'
+                Dockerimagetag: 'PreBaked'
 
     - deployment: ReleaseImageT
       condition: succeeded()
@@ -100,7 +100,7 @@ stages:
             - template: YAML/Builds/Docker/Docker-2-TrustedRegistry.yml@templates
               parameters:
                 Dockerimagename: 'platform/trivy'
-                Dockerimagetag: '$(Build.BuildNumber)'
+                Dockerimagetag: 'PreBaked'
 
     - deployment: DeployImageToGCR
       dependsOn: ReleaseImageT
@@ -129,24 +129,24 @@ stages:
                   docker push "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)"                    
               displayName: 'Publish To GCR'
 
-    - deployment: PublishToArtifactFeed
-      condition: succeeded()
-      dependsOn: DeployImageToGCR
-      displayName: Publish Trivy to ASInternal      
-      environment: 'trivy-build'
-      pool:
-        vmImage: 'windows-latest' # Set value in Azure Dev Ops Build Pipeline
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-              - task: UniversalPackages@0
-                displayName: Publish Starboard to ASInternal
-                inputs:
-                  command: publish
-                  publishDirectory: '$(Pipeline.Workspace)/Prepped/'
-                  vstsFeedPublish: 'c005f067-8dd6-49a9-a11f-6ac99ea93a22' #ASInternal
-                  vstsFeedPackagePublish: 'trivy'
-                  versionOption: custom
-                  versionPublish: '1.$(Build.BuildNumber)'
-                  packagePublishDescription: 'AAG Trivy Implementation'            
+    # - deployment: PublishToArtifactFeed
+    #   condition: succeeded()
+    #   dependsOn: DeployImageToGCR
+    #   displayName: Publish Trivy to ASInternal      
+    #   environment: 'trivy-build'
+    #   pool:
+    #     vmImage: 'windows-latest' # Set value in Azure Dev Ops Build Pipeline
+    #   strategy:
+    #     runOnce:
+    #       deploy:
+    #         steps:
+    #           - task: UniversalPackages@0
+    #             displayName: Publish Trivy to ASInternal
+    #             inputs:
+    #               command: publish
+    #               publishDirectory: '$(Pipeline.Workspace)/Prepped/'
+    #               vstsFeedPublish: 'c005f067-8dd6-49a9-a11f-6ac99ea93a22' #ASInternal
+    #               vstsFeedPackagePublish: 'trivy'
+    #               versionOption: custom
+    #               versionPublish: '1.$(Build.BuildNumber)'
+    #               packagePublishDescription: 'AAG Trivy Implementation'            
