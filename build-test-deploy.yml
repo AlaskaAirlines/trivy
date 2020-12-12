@@ -53,6 +53,9 @@ stages:
         #   parameters:
         #     ProjectKey: 'ecomm_platform-starboard' 
         #     ProjectName: 'ecomm_platform-starboard'
+        - task: GoTool@0
+          inputs:
+            version: '1.15.5' 
         - task: Bash@3  
           displayName: 'Compile Trivy Binary'
           inputs:
