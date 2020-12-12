@@ -24,18 +24,7 @@ variables:
     sonar.test.exclusions=**/deployment/**
     sonar.go.coverage.reportPaths=**/coverage.out
 
-stages:
-- stage: PrepForBuild
-  displayName: 'Create Artifact for all the resources'
-  jobs:
-    - job: PrepforBuild
-      pool: 
-        vmImage: 'ubuntu-latest'
-      steps:
-      - publish: $(Build.SourcesDirectory)
-        artifact: Prepped
-        displayName: 'Uploading Prepped Sources' 
-      
+stages: 
 - stage: BuildAndPublish
   jobs:
     - job: BuildAndPush
@@ -68,13 +57,20 @@ stages:
           displayName: 'Compile Trivy Binary'
           inputs:
             targetType: 'inline'
-            script: 'set +x; make build-starboard-cli'
+            script: 'set +x; make build'
             workingDirectory: '$(System.DefaultWorkingDirectory)'
+        - publish: $(Build.SourcesDirectory)
+          artifact: Prepped
+          displayName: 'Uploading Source With Image'            
 
+- stage: DockerBuildAndValidate
+  dependsOn: BuildAndPublish
+  displayName: Compile Container Images
+  jobs:
     - deployment: ReleaseImageU
       dependsOn: BuildAndTest
       displayName: Docker Image Untrusted
-      environment: 'aer-test'
+      environment: 'trivy-build'
       pool:
         vmImage: 'ubuntu-latest' # Set value in Azure Dev Ops Build Pipeline
       strategy:
@@ -83,7 +79,7 @@ stages:
             steps:
             - template: YAML/Builds/Docker/Docker-1-UntrustedRegistry.yml@templates
               parameters:
-                Dockerimagename: 'flight-changes/aer'
+                Dockerimagename: 'platform/trivy'
                 Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
                 Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile' 
                 Dockerimagetag: '$(Build.BuildNumber)'
@@ -92,7 +88,7 @@ stages:
       condition: succeeded()
       dependsOn: ReleaseImageU
       displayName: Docker Image Trusted
-      environment: 'aer-test'
+      environment: 'trivy-build'
       pool:
         name: '$(AquaPoolName)' # Set value in Azure Dev Ops Build Pipeline
       strategy:
@@ -101,13 +97,13 @@ stages:
             steps:              
             - template: YAML/Builds/Docker/Docker-2-TrustedRegistry.yml@templates
               parameters:
-                Dockerimagename: 'flight-changes/aer'
+                Dockerimagename: 'platform/trivy'
                 Dockerimagetag: '$(Build.BuildNumber)'
 
     - deployment: DeployImageToGCR
       dependsOn: ReleaseImageT
       displayName: Pull Tested Image Push to GCR
-      environment: 'aer-test'
+      environment: 'trivy-build'
       pool:
         vmImage: 'ubuntu-latest' # Set value in Azure Dev Ops Build Pipeline
       strategy:
@@ -123,30 +119,32 @@ stages:
                   Write-Host "ONE MINUTE Nap waiting on ACR.  Slow?"
                   Start-Sleep -s 60
                   docker login -u $(AagacrUser) -p $(AagacrKey) aagacr.azurecr.io
-                  docker pull "aagacr.azurecr.io/flight-changes/aer:$(Build.BuildNumber)"
-                  docker tag "aagacr.azurecr.io/flight-changes/aer:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/flight-changes/aer:$(Build.BuildNumber)"
+                  docker pull "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)"
+                  docker tag "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)"
 
                   gcloud auth activate-service-account --key-file $(Service_Account_Credentials.secureFilePath) --quiet
                   gcloud auth configure-docker "gcr.io" --quiet
-                  docker push "gcr.io/aag-anthos-poc17-app/flight-changes/aer:$(Build.BuildNumber)"                    
-              displayName: 'Pull Tested Image Push to GCR'
-    - job: PublishToArtifactFeed
+                  docker push "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)"                    
+              displayName: 'Publish To GCR'
+
+    - deployment: PublishToArtifactFeed
       condition: succeeded()
       dependsOn: BuildAndPush
-      displayName: Publish Starboard to ASInternal      
+      displayName: Publish Trivy to ASInternal      
+      environment: 'trivy-build'
       pool:
-        vmImage: 'windows-latest' # Set value in Azure Dev Ops Build Pipeline 
-      steps:
-        - download: current
-          artifact: 'binary'
-          displayName: Download Binary
-        - task: UniversalPackages@0
-          displayName: Publish Starboard to ASInternal
-          inputs:
-            command: publish
-            publishDirectory: '$(Pipeline.Workspace)/binary/'
-            vstsFeedPublish: 'c005f067-8dd6-49a9-a11f-6ac99ea93a22' #ASInternal
-            vstsFeedPackagePublish: 'starboard'
-            versionOption: custom
-            versionPublish: '1.$(Build.BuildNumber)'
-            packagePublishDescription: 'AAG Starboard Implementation'            
+        vmImage: 'windows-latest' # Set value in Azure Dev Ops Build Pipeline
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+              - task: UniversalPackages@0
+                displayName: Publish Starboard to ASInternal
+                inputs:
+                  command: publish
+                  publishDirectory: '$(Pipeline.Workspace)/Prepped/'
+                  vstsFeedPublish: 'c005f067-8dd6-49a9-a11f-6ac99ea93a22' #ASInternal
+                  vstsFeedPackagePublish: 'trivy'
+                  versionOption: custom
+                  versionPublish: '1.$(Build.BuildNumber)'
+                  packagePublishDescription: 'AAG Trivy Implementation'            

@@ -1,4 +1,4 @@
-module github.com/aquasecurity/trivy
+module github.com/AlaskaAirlines/trivy
 
 go 1.15
 
