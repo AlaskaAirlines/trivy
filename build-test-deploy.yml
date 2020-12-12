@@ -128,7 +128,7 @@ stages:
 
     - deployment: PublishToArtifactFeed
       condition: succeeded()
-      dependsOn: BuildAndPush
+      dependsOn: DeployImageToGCR
       displayName: Publish Trivy to ASInternal      
       environment: 'trivy-build'
       pool:
