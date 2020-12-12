@@ -8,16 +8,16 @@ import (
 
 	fos "github.com/aquasecurity/fanal/analyzer/os"
 	ftypes "github.com/aquasecurity/fanal/types"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg/alpine"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg/amazon"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg/debian"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg/oracle"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg/photon"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg/redhat"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg/suse"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg/ubuntu"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg/alpine"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg/amazon"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg/debian"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg/oracle"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg/photon"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg/redhat"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg/suse"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg/ubuntu"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 var (

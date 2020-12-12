@@ -16,9 +16,9 @@ import (
 
 	fcache "github.com/aquasecurity/fanal/cache"
 	"github.com/aquasecurity/fanal/types"
-	"github.com/aquasecurity/trivy/pkg/cache"
-	rpcCache "github.com/aquasecurity/trivy/rpc/cache"
-	"github.com/aquasecurity/trivy/rpc/detector"
+	"github.com/AlaskaAirlines/trivy/pkg/cache"
+	rpcCache "github.com/AlaskaAirlines/trivy/rpc/cache"
+	"github.com/AlaskaAirlines/trivy/rpc/detector"
 )
 
 type mockCacheServer struct {

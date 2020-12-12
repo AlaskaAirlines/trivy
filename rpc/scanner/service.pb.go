@@ -5,7 +5,7 @@ package scanner
 
 import (
 	fmt "fmt"
-	common "github.com/aquasecurity/trivy/rpc/common"
+	common "github.com/AlaskaAirlines/trivy/rpc/common"
 	proto "github.com/golang/protobuf/proto"
 	math "math"
 )
@@ -178,7 +178,7 @@ func (m *ScanResponse) GetResults() []*Result {
 	return nil
 }
 
-// Result is the same as github.com/aquasecurity/trivy/pkg/report.Result
+// Result is the same as github.com/AlaskaAirlines/trivy/pkg/report.Result
 type Result struct {
 	Target               string                  `protobuf:"bytes,1,opt,name=target,proto3" json:"target,omitempty"`
 	Vulnerabilities      []*common.Vulnerability `protobuf:"bytes,2,rep,name=vulnerabilities,proto3" json:"vulnerabilities,omitempty"`

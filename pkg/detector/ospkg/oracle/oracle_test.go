@@ -6,13 +6,13 @@ import (
 	"time"
 
 	ftypes "github.com/aquasecurity/fanal/types"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/utils"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/utils"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
 	oracleoval "github.com/aquasecurity/trivy-db/pkg/vulnsrc/oracle-oval"
-	"github.com/aquasecurity/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
 
 	"k8s.io/utils/clock"
 	clocktesting "k8s.io/utils/clock/testing"

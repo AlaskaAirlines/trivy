@@ -4,7 +4,7 @@ import (
 	"time"
 
 	ftypes "github.com/aquasecurity/fanal/types"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 	"github.com/stretchr/testify/mock"
 )
 

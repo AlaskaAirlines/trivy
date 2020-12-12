@@ -12,7 +12,7 @@ import (
 	"go.uber.org/zap/zaptest/observer"
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/internal/config"
+	"github.com/AlaskaAirlines/trivy/internal/config"
 )
 
 func TestConfig_Init(t *testing.T) {

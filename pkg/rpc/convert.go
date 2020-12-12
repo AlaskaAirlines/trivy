@@ -6,12 +6,12 @@ import (
 	ftypes "github.com/aquasecurity/fanal/types"
 	deptypes "github.com/aquasecurity/go-dep-parser/pkg/types"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/report"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/rpc/cache"
-	"github.com/aquasecurity/trivy/rpc/common"
-	"github.com/aquasecurity/trivy/rpc/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/rpc/cache"
+	"github.com/AlaskaAirlines/trivy/rpc/common"
+	"github.com/AlaskaAirlines/trivy/rpc/scanner"
 )
 
 // ConvertToRPCPkgs returns the list of RPC package objects

@@ -16,8 +16,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/urfave/cli/v2"
 
-	"github.com/aquasecurity/trivy/internal"
-	"github.com/aquasecurity/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/internal"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
 )
 
 type args struct {

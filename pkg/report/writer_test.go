@@ -10,8 +10,8 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/report"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 func TestReportWriter_Table(t *testing.T) {

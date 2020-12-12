@@ -7,14 +7,14 @@ import (
 	"github.com/urfave/cli/v2"
 	"golang.org/x/xerrors"
 
-	"github.com/aquasecurity/trivy/internal/client/config"
-	"github.com/aquasecurity/trivy/pkg/cache"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/report"
-	"github.com/aquasecurity/trivy/pkg/rpc/client"
-	"github.com/aquasecurity/trivy/pkg/scanner"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/utils"
+	"github.com/AlaskaAirlines/trivy/internal/client/config"
+	"github.com/AlaskaAirlines/trivy/pkg/cache"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/pkg/rpc/client"
+	"github.com/AlaskaAirlines/trivy/pkg/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/utils"
 )
 
 // Run runs the scan

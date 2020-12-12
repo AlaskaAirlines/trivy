@@ -12,11 +12,11 @@ import (
 	"github.com/aquasecurity/fanal/artifact/remote"
 	"github.com/aquasecurity/fanal/image"
 	ftypes "github.com/aquasecurity/fanal/types"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/report"
-	"github.com/aquasecurity/trivy/pkg/rpc/client"
-	"github.com/aquasecurity/trivy/pkg/scanner/local"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/pkg/rpc/client"
+	"github.com/AlaskaAirlines/trivy/pkg/scanner/local"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 // StandaloneSuperSet is used in the standalone mode

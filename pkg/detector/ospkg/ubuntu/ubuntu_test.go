@@ -6,12 +6,12 @@ import (
 	"time"
 
 	ftypes "github.com/aquasecurity/fanal/types"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 	"github.com/stretchr/testify/assert"
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 
-	"github.com/aquasecurity/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
 )
 
 type MockUbuntuConfig struct {

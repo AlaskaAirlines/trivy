@@ -18,8 +18,8 @@ import (
 
 	ftypes "github.com/aquasecurity/fanal/types"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/utils"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/utils"
 )
 
 // Now returns the current time

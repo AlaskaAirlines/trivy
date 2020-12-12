@@ -7,8 +7,8 @@ import (
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 	"github.com/aquasecurity/trivy-db/pkg/vulnsrc/ghsa"
-	"github.com/aquasecurity/trivy/pkg/detector/library/comparer"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 // VulnSrc defines the operations on vulnerability source

@@ -7,14 +7,14 @@ import (
 
 	ecosystem "github.com/aquasecurity/trivy-db/pkg/vulnsrc/ghsa"
 	"github.com/aquasecurity/trivy-db/pkg/vulnsrc/vulnerability"
-	"github.com/aquasecurity/trivy/pkg/detector/library/bundler"
-	"github.com/aquasecurity/trivy/pkg/detector/library/cargo"
-	"github.com/aquasecurity/trivy/pkg/detector/library/comparer"
-	"github.com/aquasecurity/trivy/pkg/detector/library/composer"
-	"github.com/aquasecurity/trivy/pkg/detector/library/ghsa"
-	"github.com/aquasecurity/trivy/pkg/detector/library/node"
-	"github.com/aquasecurity/trivy/pkg/detector/library/python"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/bundler"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/cargo"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/composer"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/ghsa"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/node"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/python"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 // Factory defines library operations

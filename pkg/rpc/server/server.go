@@ -8,13 +8,13 @@ import (
 	"golang.org/x/xerrors"
 
 	"github.com/aquasecurity/fanal/cache"
-	"github.com/aquasecurity/trivy/pkg/rpc"
-	"github.com/aquasecurity/trivy/pkg/scanner"
-	"github.com/aquasecurity/trivy/pkg/scanner/local"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/vulnerability"
-	rpcCache "github.com/aquasecurity/trivy/rpc/cache"
-	rpcScanner "github.com/aquasecurity/trivy/rpc/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/rpc"
+	"github.com/AlaskaAirlines/trivy/pkg/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/scanner/local"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/vulnerability"
+	rpcCache "github.com/AlaskaAirlines/trivy/rpc/cache"
+	rpcScanner "github.com/AlaskaAirlines/trivy/rpc/scanner"
 )
 
 // ScanSuperSet binds the dependencies for server

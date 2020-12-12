@@ -7,10 +7,10 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/aquasecurity/trivy/pkg/detector/library/python"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/utils"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/python"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/utils"
 )
 
 func TestAdvisory_DetectVulnerabilities(t *testing.T) {
@@ -42,7 +42,7 @@ func TestAdvisory_DetectVulnerabilities(t *testing.T) {
 			},
 		},
 		{
-			// https://github.com/aquasecurity/trivy/issues/713
+			// https://github.com/AlaskaAirlines/trivy/issues/713
 			name: "not detected",
 			args: args{
 				pkgName: "django",

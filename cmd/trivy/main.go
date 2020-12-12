@@ -4,9 +4,9 @@ import (
 	l "log"
 	"os"
 
-	"github.com/aquasecurity/trivy/internal"
+	"github.com/AlaskaAirlines/trivy/internal"
 
-	"github.com/aquasecurity/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
 )
 
 var (

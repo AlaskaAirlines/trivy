@@ -23,9 +23,9 @@ import (
 	"github.com/testcontainers/testcontainers-go/wait"
 
 	_ "github.com/aquasecurity/fanal/analyzer"
-	testdocker "github.com/aquasecurity/trivy/integration/docker"
-	"github.com/aquasecurity/trivy/internal"
-	"github.com/aquasecurity/trivy/pkg/report"
+	testdocker "github.com/AlaskaAirlines/trivy/integration/docker"
+	"github.com/AlaskaAirlines/trivy/internal"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
 )
 
 const (

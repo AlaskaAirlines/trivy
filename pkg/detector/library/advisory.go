@@ -8,8 +8,8 @@ import (
 
 	"github.com/aquasecurity/trivy-db/pkg/db"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/detector/library/comparer"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 // Advisory represents security advisories for each programming language

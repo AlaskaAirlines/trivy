@@ -6,8 +6,8 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/detector/library/node"
-	"github.com/aquasecurity/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/node"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
 )
 
 func TestNpmComparer_MatchVersion(t *testing.T) {

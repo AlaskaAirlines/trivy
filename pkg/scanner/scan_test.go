@@ -11,9 +11,9 @@ import (
 
 	"github.com/aquasecurity/fanal/artifact"
 	ftypes "github.com/aquasecurity/fanal/types"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/report"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 func TestMain(m *testing.M) {

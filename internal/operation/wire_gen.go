@@ -7,9 +7,9 @@ package operation
 
 import (
 	db2 "github.com/aquasecurity/trivy-db/pkg/db"
-	"github.com/aquasecurity/trivy/pkg/db"
-	"github.com/aquasecurity/trivy/pkg/github"
-	"github.com/aquasecurity/trivy/pkg/indicator"
+	"github.com/AlaskaAirlines/trivy/pkg/db"
+	"github.com/AlaskaAirlines/trivy/pkg/github"
+	"github.com/AlaskaAirlines/trivy/pkg/indicator"
 	"github.com/spf13/afero"
 	"k8s.io/utils/clock"
 )

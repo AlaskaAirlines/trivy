@@ -11,12 +11,12 @@ import (
 
 	ftypes "github.com/aquasecurity/fanal/types"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/vulnerability"
-	"github.com/aquasecurity/trivy/rpc/common"
-	proto "github.com/aquasecurity/trivy/rpc/detector"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/vulnerability"
+	"github.com/AlaskaAirlines/trivy/rpc/common"
+	proto "github.com/AlaskaAirlines/trivy/rpc/detector"
 )
 
 func TestMain(m *testing.M) {

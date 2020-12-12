@@ -4,8 +4,8 @@ package server
 
 import (
 	"github.com/aquasecurity/fanal/cache"
-	"github.com/aquasecurity/trivy/pkg/rpc/server/library"
-	"github.com/aquasecurity/trivy/pkg/rpc/server/ospkg"
+	"github.com/AlaskaAirlines/trivy/pkg/rpc/server/library"
+	"github.com/AlaskaAirlines/trivy/pkg/rpc/server/ospkg"
 	"github.com/google/wire"
 )
 

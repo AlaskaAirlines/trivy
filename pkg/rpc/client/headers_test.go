@@ -8,7 +8,7 @@ import (
 
 	"github.com/twitchtv/twirp"
 
-	"github.com/aquasecurity/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
 
 	"github.com/stretchr/testify/assert"
 )

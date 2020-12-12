@@ -12,12 +12,12 @@ import (
 
 	"github.com/aquasecurity/trivy-db/pkg/db"
 	"github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/internal/artifact"
-	"github.com/aquasecurity/trivy/internal/client"
-	"github.com/aquasecurity/trivy/internal/server"
-	tdb "github.com/aquasecurity/trivy/pkg/db"
-	"github.com/aquasecurity/trivy/pkg/utils"
-	"github.com/aquasecurity/trivy/pkg/vulnerability"
+	"github.com/AlaskaAirlines/trivy/internal/artifact"
+	"github.com/AlaskaAirlines/trivy/internal/client"
+	"github.com/AlaskaAirlines/trivy/internal/server"
+	tdb "github.com/AlaskaAirlines/trivy/pkg/db"
+	"github.com/AlaskaAirlines/trivy/pkg/utils"
+	"github.com/AlaskaAirlines/trivy/pkg/vulnerability"
 )
 
 // VersionInfo holds the trivy DB version Info

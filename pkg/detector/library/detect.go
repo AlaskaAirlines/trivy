@@ -8,8 +8,8 @@ import (
 	"golang.org/x/xerrors"
 
 	ftypes "github.com/aquasecurity/fanal/types"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 // SuperSet binds the dependencies for library scan

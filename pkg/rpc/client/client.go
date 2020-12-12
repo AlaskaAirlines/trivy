@@ -6,14 +6,14 @@ import (
 
 	ftypes "github.com/aquasecurity/fanal/types"
 
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 
 	"github.com/google/wire"
 	"golang.org/x/xerrors"
 
-	"github.com/aquasecurity/trivy/pkg/report"
-	r "github.com/aquasecurity/trivy/pkg/rpc"
-	rpc "github.com/aquasecurity/trivy/rpc/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	r "github.com/AlaskaAirlines/trivy/pkg/rpc"
+	rpc "github.com/AlaskaAirlines/trivy/rpc/scanner"
 )
 
 // SuperSet binds the dependencies for RPC client

@@ -19,9 +19,9 @@ import (
 
 	"github.com/aquasecurity/fanal/cache"
 	"github.com/aquasecurity/trivy-db/pkg/db"
-	dbFile "github.com/aquasecurity/trivy/pkg/db"
-	"github.com/aquasecurity/trivy/pkg/log"
-	rpcCache "github.com/aquasecurity/trivy/rpc/cache"
+	dbFile "github.com/AlaskaAirlines/trivy/pkg/db"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	rpcCache "github.com/AlaskaAirlines/trivy/rpc/cache"
 )
 
 func TestMain(m *testing.M) {

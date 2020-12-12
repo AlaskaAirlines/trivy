@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/require"
 	"github.com/urfave/cli/v2"
 
-	"github.com/aquasecurity/trivy/internal/config"
-	c "github.com/aquasecurity/trivy/internal/server/config"
+	"github.com/AlaskaAirlines/trivy/internal/config"
+	c "github.com/AlaskaAirlines/trivy/internal/server/config"
 )
 
 func TestNew(t *testing.T) {

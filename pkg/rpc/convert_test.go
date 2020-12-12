@@ -4,15 +4,15 @@ import (
 	"os"
 	"testing"
 
-	"github.com/aquasecurity/trivy/rpc/common"
+	"github.com/AlaskaAirlines/trivy/rpc/common"
 
 	ftypes "github.com/aquasecurity/fanal/types"
 
-	"github.com/aquasecurity/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
 
 	ptypes "github.com/aquasecurity/go-dep-parser/pkg/types"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 	"github.com/stretchr/testify/assert"
 )
 

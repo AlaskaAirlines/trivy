@@ -7,7 +7,7 @@ import (
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 
-	"github.com/aquasecurity/trivy/rpc/common"
+	"github.com/AlaskaAirlines/trivy/rpc/common"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -15,9 +15,9 @@ import (
 	"github.com/stretchr/testify/mock"
 
 	ftypes "github.com/aquasecurity/fanal/types"
-	"github.com/aquasecurity/trivy/pkg/report"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/rpc/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/rpc/scanner"
 )
 
 type mockScanner struct {

@@ -14,12 +14,12 @@ import (
 	"github.com/aquasecurity/fanal/cache"
 	"github.com/aquasecurity/fanal/image"
 	"github.com/aquasecurity/trivy-db/pkg/db"
-	"github.com/aquasecurity/trivy/pkg/detector/library"
-	"github.com/aquasecurity/trivy/pkg/detector/ospkg"
-	"github.com/aquasecurity/trivy/pkg/scanner"
-	"github.com/aquasecurity/trivy/pkg/scanner/local"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/vulnerability"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/ospkg"
+	"github.com/AlaskaAirlines/trivy/pkg/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/scanner/local"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/vulnerability"
 	"time"
 )
 

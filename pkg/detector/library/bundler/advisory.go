@@ -7,7 +7,7 @@ import (
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 	bundlerSrc "github.com/aquasecurity/trivy-db/pkg/vulnsrc/bundler"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 // VulnSrc defines the operation on bundler vulnerability

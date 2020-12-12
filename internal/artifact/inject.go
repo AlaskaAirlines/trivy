@@ -7,8 +7,8 @@ import (
 	"time"
 
 	"github.com/aquasecurity/fanal/cache"
-	"github.com/aquasecurity/trivy/pkg/scanner"
-	"github.com/aquasecurity/trivy/pkg/vulnerability"
+	"github.com/AlaskaAirlines/trivy/pkg/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/vulnerability"
 	"github.com/google/wire"
 )
 

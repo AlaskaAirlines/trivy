@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/aquasecurity/trivy/pkg/github"
-	"github.com/aquasecurity/trivy/pkg/indicator"
+	"github.com/AlaskaAirlines/trivy/pkg/github"
+	"github.com/AlaskaAirlines/trivy/pkg/indicator"
 
 	"github.com/spf13/afero"
 
@@ -22,7 +22,7 @@ import (
 	clocktesting "k8s.io/utils/clock/testing"
 
 	"github.com/aquasecurity/trivy-db/pkg/db"
-	"github.com/aquasecurity/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
 	"github.com/stretchr/testify/assert"
 )
 

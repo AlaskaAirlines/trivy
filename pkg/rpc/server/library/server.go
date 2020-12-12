@@ -7,11 +7,11 @@ import (
 	"github.com/google/wire"
 	"golang.org/x/xerrors"
 
-	detector "github.com/aquasecurity/trivy/pkg/detector/library"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/rpc"
-	"github.com/aquasecurity/trivy/pkg/vulnerability"
-	proto "github.com/aquasecurity/trivy/rpc/detector"
+	detector "github.com/AlaskaAirlines/trivy/pkg/detector/library"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/rpc"
+	"github.com/AlaskaAirlines/trivy/pkg/vulnerability"
+	proto "github.com/AlaskaAirlines/trivy/rpc/detector"
 )
 
 // SuperSet binds the dependencies for library RPC server

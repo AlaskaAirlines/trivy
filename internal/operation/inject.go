@@ -3,7 +3,7 @@
 package operation
 
 import (
-	"github.com/aquasecurity/trivy/pkg/db"
+	"github.com/AlaskaAirlines/trivy/pkg/db"
 	"github.com/google/wire"
 )
 

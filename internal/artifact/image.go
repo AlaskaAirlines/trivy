@@ -8,8 +8,8 @@ import (
 	"golang.org/x/xerrors"
 
 	"github.com/aquasecurity/fanal/cache"
-	"github.com/aquasecurity/trivy/internal/artifact/config"
-	"github.com/aquasecurity/trivy/pkg/scanner"
+	"github.com/AlaskaAirlines/trivy/internal/artifact/config"
+	"github.com/AlaskaAirlines/trivy/pkg/scanner"
 )
 
 func archiveScanner(ctx context.Context, input string, ac cache.ArtifactCache, lac cache.LocalArtifactCache, timeout time.Duration) (

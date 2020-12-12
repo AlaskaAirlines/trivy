@@ -4,7 +4,7 @@ import (
 	"flag"
 	"testing"
 
-	"github.com/aquasecurity/trivy/internal/config"
+	"github.com/AlaskaAirlines/trivy/internal/config"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"github.com/urfave/cli/v2"

@@ -3,7 +3,7 @@ syntax = "proto3";
 package trivy.scanner.v1;
 option  go_package = "scanner";
 
-import "github.com/aquasecurity/trivy/rpc/common/service.proto";
+import "github.com/AlaskaAirlines/trivy/rpc/common/service.proto";
 
 service Scanner {
   rpc Scan(ScanRequest) returns (ScanResponse);
@@ -26,7 +26,7 @@ message ScanResponse {
   repeated Result results = 3;
 }
 
-// Result is the same as github.com/aquasecurity/trivy/pkg/report.Result
+// Result is the same as github.com/AlaskaAirlines/trivy/pkg/report.Result
 message Result {
   string   target                               = 1;
   repeated common.Vulnerability vulnerabilities = 2;

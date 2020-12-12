@@ -10,9 +10,9 @@ import (
 	"golang.org/x/xerrors"
 
 	"github.com/aquasecurity/fanal/cache"
-	"github.com/aquasecurity/trivy/pkg/db"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/utils"
+	"github.com/AlaskaAirlines/trivy/pkg/db"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/utils"
 )
 
 // SuperSet binds cache dependencies

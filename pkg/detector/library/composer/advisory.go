@@ -8,8 +8,8 @@ import (
 
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 	composerSrc "github.com/aquasecurity/trivy-db/pkg/vulnsrc/composer"
-	"github.com/aquasecurity/trivy/pkg/detector/library/comparer"
-	"github.com/aquasecurity/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 // Advisory encapsulates composer.VulnSrc

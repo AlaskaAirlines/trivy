@@ -32,12 +32,12 @@ import (
 	_ "github.com/aquasecurity/fanal/analyzer/pkg/rpm"
 	"github.com/aquasecurity/fanal/applier"
 	ftypes "github.com/aquasecurity/fanal/types"
-	libDetector "github.com/aquasecurity/trivy/pkg/detector/library"
-	ospkgDetector "github.com/aquasecurity/trivy/pkg/detector/ospkg"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/report"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/utils"
+	libDetector "github.com/AlaskaAirlines/trivy/pkg/detector/library"
+	ospkgDetector "github.com/AlaskaAirlines/trivy/pkg/detector/ospkg"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/utils"
 )
 
 // SuperSet binds dependencies for Local scan

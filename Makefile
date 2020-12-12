@@ -2,6 +2,7 @@ VERSION := $(shell git describe --tags)
 LDFLAGS=-ldflags "-s -w -X=main.version=$(VERSION)"
 
 GOPATH=$(shell go env GOPATH)
+SYSTEM_DEFAULTWORKINGDIRECTORY := $(shell echo "${SYSTEM_DEFAULTWORKINGDIRECTORY}")
 GOBIN=$(GOPATH)/bin
 GOSRC=$(GOPATH)/src
 
@@ -47,7 +48,7 @@ fmt:
 
 .PHONY: build
 build:
-	go build $(LDFLAGS) ./cmd/trivy
+	go build $(LDFLAGS) -o ${SYSTEM_DEFAULTWORKINGDIRECTORY}/bin/trivy ${SYSTEM_DEFAULTWORKINGDIRECTORY}/cmd/trivy
 
 .PHONY: protoc
 protoc:

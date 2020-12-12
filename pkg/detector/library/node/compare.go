@@ -5,7 +5,7 @@ import (
 
 	npm "github.com/aquasecurity/go-npm-version/pkg"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/detector/library/comparer"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
 )
 
 // NpmComparer represents a comparer for npm

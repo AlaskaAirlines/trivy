@@ -11,10 +11,10 @@ import (
 	ftypes "github.com/aquasecurity/fanal/types"
 	dtypes "github.com/aquasecurity/go-dep-parser/pkg/types"
 	"github.com/aquasecurity/trivy-db/pkg/vulnsrc/vulnerability"
-	ospkgDetector "github.com/aquasecurity/trivy/pkg/detector/ospkg"
-	"github.com/aquasecurity/trivy/pkg/log"
-	"github.com/aquasecurity/trivy/pkg/report"
-	"github.com/aquasecurity/trivy/pkg/types"
+	ospkgDetector "github.com/AlaskaAirlines/trivy/pkg/detector/ospkg"
+	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
 )
 
 func TestScanner_Scan(t *testing.T) {

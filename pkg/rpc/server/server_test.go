@@ -17,13 +17,13 @@ import (
 	ftypes "github.com/aquasecurity/fanal/types"
 	deptypes "github.com/aquasecurity/go-dep-parser/pkg/types"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/report"
-	"github.com/aquasecurity/trivy/pkg/scanner"
-	"github.com/aquasecurity/trivy/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/vulnerability"
-	rpcCache "github.com/aquasecurity/trivy/rpc/cache"
-	"github.com/aquasecurity/trivy/rpc/common"
-	rpcScanner "github.com/aquasecurity/trivy/rpc/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/report"
+	"github.com/AlaskaAirlines/trivy/pkg/scanner"
+	"github.com/AlaskaAirlines/trivy/pkg/types"
+	"github.com/AlaskaAirlines/trivy/pkg/vulnerability"
+	rpcCache "github.com/AlaskaAirlines/trivy/rpc/cache"
+	"github.com/AlaskaAirlines/trivy/rpc/common"
+	rpcScanner "github.com/AlaskaAirlines/trivy/rpc/scanner"
 )
 
 type mockCache struct {

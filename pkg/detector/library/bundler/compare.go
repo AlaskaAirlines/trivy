@@ -5,7 +5,7 @@ import (
 
 	"github.com/aquasecurity/go-gem-version"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/aquasecurity/trivy/pkg/detector/library/comparer"
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
 )
 
 // RubyGemsComparer represents a comparer for RubyGems

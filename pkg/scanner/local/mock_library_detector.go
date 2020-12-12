@@ -3,7 +3,7 @@
 package local
 
 import mock "github.com/stretchr/testify/mock"
-import pkgtypes "github.com/aquasecurity/trivy/pkg/types"
+import pkgtypes "github.com/AlaskaAirlines/trivy/pkg/types"
 import time "time"
 import types "github.com/aquasecurity/fanal/types"
 

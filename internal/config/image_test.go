@@ -10,7 +10,7 @@ import (
 	"go.uber.org/zap"
 	"go.uber.org/zap/zaptest/observer"
 
-	"github.com/aquasecurity/trivy/internal/config"
+	"github.com/AlaskaAirlines/trivy/internal/config"
 )
 
 func TestImageConfig_Init(t *testing.T) {

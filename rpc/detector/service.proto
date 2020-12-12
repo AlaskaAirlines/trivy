@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 package trivy.detector;
 option  go_package = "detector";
 
-import "github.com/aquasecurity/trivy/rpc/common/service.proto";
+import "github.com/AlaskaAirlines/trivy/rpc/common/service.proto";
 
 service OSDetector {
   rpc Detect(OSDetectRequest) returns (DetectResponse);

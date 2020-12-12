@@ -3,7 +3,7 @@ package config
 import (
 	"github.com/urfave/cli/v2"
 
-	"github.com/aquasecurity/trivy/internal/config"
+	"github.com/AlaskaAirlines/trivy/internal/config"
 )
 
 // Config holds the  Trivy config

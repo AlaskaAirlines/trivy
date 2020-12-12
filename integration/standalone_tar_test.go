@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/aquasecurity/trivy/internal"
+	"github.com/AlaskaAirlines/trivy/internal"
 )
 
 func TestRun_WithTar(t *testing.T) {

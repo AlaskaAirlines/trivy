@@ -5,7 +5,7 @@ package detector
 
 import (
 	fmt "fmt"
-	common "github.com/aquasecurity/trivy/rpc/common"
+	common "github.com/AlaskaAirlines/trivy/rpc/common"
 	proto "github.com/golang/protobuf/proto"
 	timestamp "github.com/golang/protobuf/ptypes/timestamp"
 	math "math"
