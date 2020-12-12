@@ -68,7 +68,6 @@ stages:
   displayName: Compile Container Images
   jobs:
     - deployment: ReleaseImageU
-      dependsOn: BuildAndTest
       displayName: Docker Image Untrusted
       environment: 'trivy-build'
       pool:
