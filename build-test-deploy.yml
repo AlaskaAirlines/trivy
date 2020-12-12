@@ -84,7 +84,7 @@ stages:
                 Dockerimagename: 'platform/trivy'
                 Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
                 Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile' 
-                Dockerimagetag: 'PreBaked'
+                Dockerimagetag: '$(Build.BuildNumber)'
 
     - deployment: ReleaseImageT
       condition: succeeded()
@@ -100,7 +100,7 @@ stages:
             - template: YAML/Builds/Docker/Docker-2-TrustedRegistry.yml@templates
               parameters:
                 Dockerimagename: 'platform/trivy'
-                Dockerimagetag: 'PreBaked'
+                Dockerimagetag: '$(Build.BuildNumber)'
 
     - deployment: DeployImageToGCR
       dependsOn: ReleaseImageT
@@ -123,10 +123,12 @@ stages:
                   docker login -u $(AagacrUser) -p $(AagacrKey) aagacr.azurecr.io
                   docker pull "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)"
                   docker tag "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)"
+                  docker tag "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/platform/trivy:PreBaked"
 
                   gcloud auth activate-service-account --key-file $(Service_Account_Credentials.secureFilePath) --quiet
                   gcloud auth configure-docker "gcr.io" --quiet
                   docker push "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)"                    
+                  docker push "gcr.io/aag-anthos-poc17-app/platform/trivy:PreBaked"
               displayName: 'Publish To GCR'
 
     # - deployment: PublishToArtifactFeed
