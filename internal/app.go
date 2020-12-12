@@ -10,14 +10,14 @@ import (
 	"github.com/spf13/afero"
 	"github.com/urfave/cli/v2"
 
-	"github.com/aquasecurity/trivy-db/pkg/db"
-	"github.com/aquasecurity/trivy-db/pkg/types"
 	"github.com/AlaskaAirlines/trivy/internal/artifact"
 	"github.com/AlaskaAirlines/trivy/internal/client"
 	"github.com/AlaskaAirlines/trivy/internal/server"
 	tdb "github.com/AlaskaAirlines/trivy/pkg/db"
 	"github.com/AlaskaAirlines/trivy/pkg/utils"
 	"github.com/AlaskaAirlines/trivy/pkg/vulnerability"
+	"github.com/aquasecurity/trivy-db/pkg/db"
+	"github.com/aquasecurity/trivy-db/pkg/types"
 )
 
 // VersionInfo holds the trivy DB version Info

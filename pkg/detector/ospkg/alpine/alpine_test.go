@@ -10,8 +10,8 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 	"github.com/AlaskaAirlines/trivy/pkg/types"
+	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 
 	"github.com/AlaskaAirlines/trivy/pkg/log"
 )

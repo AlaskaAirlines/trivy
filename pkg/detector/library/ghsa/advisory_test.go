@@ -7,12 +7,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	ghsaSrc "github.com/aquasecurity/trivy-db/pkg/vulnsrc/ghsa"
 	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
 	"github.com/AlaskaAirlines/trivy/pkg/detector/library/ghsa"
 	"github.com/AlaskaAirlines/trivy/pkg/log"
 	"github.com/AlaskaAirlines/trivy/pkg/types"
 	"github.com/AlaskaAirlines/trivy/pkg/utils"
+	ghsaSrc "github.com/aquasecurity/trivy-db/pkg/vulnsrc/ghsa"
 )
 
 func TestAdvisory_DetectVulnerabilities(t *testing.T) {

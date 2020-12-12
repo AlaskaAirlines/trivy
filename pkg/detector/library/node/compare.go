@@ -3,9 +3,9 @@ package node
 import (
 	"golang.org/x/xerrors"
 
+	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
 	npm "github.com/aquasecurity/go-npm-version/pkg"
 	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
 )
 
 // NpmComparer represents a comparer for npm

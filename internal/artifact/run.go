@@ -8,8 +8,6 @@ import (
 
 	"golang.org/x/xerrors"
 
-	"github.com/aquasecurity/fanal/cache"
-	"github.com/aquasecurity/trivy-db/pkg/db"
 	"github.com/AlaskaAirlines/trivy/internal/artifact/config"
 	"github.com/AlaskaAirlines/trivy/internal/operation"
 	"github.com/AlaskaAirlines/trivy/pkg/log"
@@ -17,6 +15,8 @@ import (
 	"github.com/AlaskaAirlines/trivy/pkg/scanner"
 	"github.com/AlaskaAirlines/trivy/pkg/types"
 	"github.com/AlaskaAirlines/trivy/pkg/utils"
+	"github.com/aquasecurity/fanal/cache"
+	"github.com/aquasecurity/trivy-db/pkg/db"
 )
 
 // InitializeScanner type to define initialize function signature

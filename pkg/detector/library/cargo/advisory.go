@@ -5,10 +5,10 @@ import (
 
 	"golang.org/x/xerrors"
 
-	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
-	cargoSrc "github.com/aquasecurity/trivy-db/pkg/vulnsrc/cargo"
 	"github.com/AlaskaAirlines/trivy/pkg/detector/library/comparer"
 	"github.com/AlaskaAirlines/trivy/pkg/types"
+	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
+	cargoSrc "github.com/aquasecurity/trivy-db/pkg/vulnsrc/cargo"
 )
 
 // Advisory encapsulates the cargo vulnerability scanner

@@ -11,9 +11,9 @@ import (
 	"github.com/stretchr/testify/require"
 	"golang.org/x/xerrors"
 
-	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 	"github.com/AlaskaAirlines/trivy/pkg/log"
 	"github.com/AlaskaAirlines/trivy/pkg/types"
+	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 )
 
 func TestMain(m *testing.M) {

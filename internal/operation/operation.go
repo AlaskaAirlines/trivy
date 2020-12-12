@@ -9,10 +9,10 @@ import (
 	"github.com/google/wire"
 	"golang.org/x/xerrors"
 
-	"github.com/aquasecurity/fanal/cache"
 	"github.com/AlaskaAirlines/trivy/pkg/db"
 	"github.com/AlaskaAirlines/trivy/pkg/log"
 	"github.com/AlaskaAirlines/trivy/pkg/utils"
+	"github.com/aquasecurity/fanal/cache"
 )
 
 // SuperSet binds cache dependencies

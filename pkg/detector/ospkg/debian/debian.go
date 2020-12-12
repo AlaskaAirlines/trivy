@@ -10,11 +10,11 @@ import (
 	version "github.com/knqyf263/go-deb-version"
 	"golang.org/x/xerrors"
 
-	ftypes "github.com/aquasecurity/fanal/types"
-	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 	"github.com/AlaskaAirlines/trivy/pkg/log"
 	"github.com/AlaskaAirlines/trivy/pkg/scanner/utils"
 	"github.com/AlaskaAirlines/trivy/pkg/types"
+	ftypes "github.com/aquasecurity/fanal/types"
+	dbTypes "github.com/aquasecurity/trivy-db/pkg/types"
 )
 
 var (

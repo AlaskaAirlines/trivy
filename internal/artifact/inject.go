@@ -6,9 +6,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/aquasecurity/fanal/cache"
 	"github.com/AlaskaAirlines/trivy/pkg/scanner"
 	"github.com/AlaskaAirlines/trivy/pkg/vulnerability"
+	"github.com/aquasecurity/fanal/cache"
 	"github.com/google/wire"
 )
 

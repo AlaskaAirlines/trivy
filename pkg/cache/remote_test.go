@@ -14,11 +14,11 @@ import (
 	"github.com/twitchtv/twirp"
 	"golang.org/x/xerrors"
 
-	fcache "github.com/aquasecurity/fanal/cache"
-	"github.com/aquasecurity/fanal/types"
 	"github.com/AlaskaAirlines/trivy/pkg/cache"
 	rpcCache "github.com/AlaskaAirlines/trivy/rpc/cache"
 	"github.com/AlaskaAirlines/trivy/rpc/detector"
+	fcache "github.com/aquasecurity/fanal/cache"
+	"github.com/aquasecurity/fanal/types"
 )
 
 type mockCacheServer struct {
