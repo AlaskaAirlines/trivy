@@ -29,33 +29,34 @@ stages:
   jobs:
     - job: BuildAndPush
       steps:
+        - task: GoTool@0
+          inputs:
+            version: '1.15.5' 
+          displayName: Install Go 1.15        
         # SonarQube Prepare CLI Task  
-        # - template: YAML/Builds/Security/SonarQubePrepareCLI.yml@templates  # Template reference
-        #   parameters:
-        #     ProjectKey: 'ecomm_platform-starboard' 
-        #     ProjectName: 'ecomm_platform-starboard' 
-        #     Scannedsources: '.' 
-        #     ExtraProperties: '$(SonarQubeExtraProps)' 
+        - template: YAML/Builds/Security/SonarQubePrepareCLI.yml@templates  # Template reference
+          parameters:
+            ProjectKey: 'ecomm_platform-trivy' 
+            ProjectName: 'ecomm_platform-trivy' 
+            Scannedsources: '.' 
+            ExtraProperties: '$(SonarQubeExtraProps)' 
         # - task: Bash@3
         #   displayName: 'Run Style Checker'
         #   inputs:
         #     targetType: 'inline'
         #     script: 'set +x; go get -v -u golang.org/x/lint/golint; GOPATH=/home/vsts/go make lint'
         #     workingDirectory: '$(System.DefaultWorkingDirectory)'
-        # - task: Bash@3
-        #   displayName: 'Run Unit Tests'
-        #   inputs:
-        #     targetType: 'inline'
-        #     script: 'set +x; make unit-tests'
-        #     workingDirectory: '$(System.DefaultWorkingDirectory)'
-        # SonarQube SonarQubeAnalyzeAndPublish Task
-        # - template: YAML/Builds/Security/SonarQubeAnalyzeAndPublish.yml@templates 
-        #   parameters:
-        #     ProjectKey: 'ecomm_platform-starboard' 
-        #     ProjectName: 'ecomm_platform-starboard'
-        - task: GoTool@0
+        - task: Bash@3
+          displayName: 'Run Unit Tests'
           inputs:
-            version: '1.15.5' 
+            targetType: 'inline'
+            script: 'set +x; make test'
+            workingDirectory: '$(System.DefaultWorkingDirectory)'
+        # SonarQube SonarQubeAnalyzeAndPublish Task
+        - template: YAML/Builds/Security/SonarQubeAnalyzeAndPublish.yml@templates 
+          parameters:
+            ProjectKey: 'ecomm_platform-trivy' 
+            ProjectName: 'ecomm_platform-trivy'
         - task: Bash@3  
           displayName: 'Compile Trivy Binary'
           inputs:
@@ -64,7 +65,10 @@ stages:
             workingDirectory: '$(System.DefaultWorkingDirectory)'
         - publish: $(Build.SourcesDirectory)
           artifact: Prepped
-          displayName: 'Uploading Source With Image'            
+          displayName: 'Uploading Source With Image'        
+        - publish: $(Build.SourcesDirectory)/bin
+          artifact: binary
+          displayName: Uploading Trivy Binary
 
 - stage: DockerBuildAndValidate
   dependsOn: BuildAndPublish
@@ -131,24 +135,24 @@ stages:
                   docker push "gcr.io/aag-anthos-poc17-app/platform/trivy:PreBaked"
               displayName: 'Publish To GCR'
 
-    # - deployment: PublishToArtifactFeed
-    #   condition: succeeded()
-    #   dependsOn: DeployImageToGCR
-    #   displayName: Publish Trivy to ASInternal      
-    #   environment: 'trivy-build'
-    #   pool:
-    #     vmImage: 'windows-latest' # Set value in Azure Dev Ops Build Pipeline
-    #   strategy:
-    #     runOnce:
-    #       deploy:
-    #         steps:
-    #           - task: UniversalPackages@0
-    #             displayName: Publish Trivy to ASInternal
-    #             inputs:
-    #               command: publish
-    #               publishDirectory: '$(Pipeline.Workspace)/Prepped/'
-    #               vstsFeedPublish: 'c005f067-8dd6-49a9-a11f-6ac99ea93a22' #ASInternal
-    #               vstsFeedPackagePublish: 'trivy'
-    #               versionOption: custom
-    #               versionPublish: '1.$(Build.BuildNumber)'
-    #               packagePublishDescription: 'AAG Trivy Implementation'            
+    - deployment: PublishToArtifactFeed
+      condition: succeeded()
+      dependsOn: DeployImageToGCR
+      displayName: Publish Trivy to ASInternal      
+      environment: 'trivy-build'
+      pool:
+        vmImage: 'windows-latest' # Set value in Azure Dev Ops Build Pipeline
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+              - task: UniversalPackages@0
+                displayName: Publish Trivy to ASInternal
+                inputs:
+                  command: publish
+                  publishDirectory: '$(Pipeline.Workspace)/binary/'
+                  vstsFeedPublish: 'c005f067-8dd6-49a9-a11f-6ac99ea93a22' #ASInternal
+                  vstsFeedPackagePublish: 'trivy'
+                  versionOption: custom
+                  versionPublish: '1.$(Build.BuildNumber)'
+                  packagePublishDescription: 'AAG Trivy Implementation'            

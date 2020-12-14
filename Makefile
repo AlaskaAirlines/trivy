@@ -29,7 +29,7 @@ $(GOBIN)/golangci-lint:
 
 .PHONY: test
 test:
-	go test -v -short -coverprofile=coverage.txt -covermode=atomic ./...
+	go test -v -short -coverprofile=coverage.txt -covermode=atomic ${SYSTEM_DEFAULTWORKINGDIRECTORY}/...
 
 integration/testdata/fixtures/*.tar.gz:
 	git clone https://github.com/aquasecurity/trivy-test-images.git integration/testdata/fixtures
@@ -49,7 +49,7 @@ fmt:
 .PHONY: build
 build:
 	# go build $(LDFLAGS) -o ./trivy ./cmd/trivy
-	go build $(LDFLAGS) -o ${SYSTEM_DEFAULTWORKINGDIRECTORY}/trivy ${SYSTEM_DEFAULTWORKINGDIRECTORY}/cmd/trivy
+	go build $(LDFLAGS) -o ${SYSTEM_DEFAULTWORKINGDIRECTORY}/bin/trivy ${SYSTEM_DEFAULTWORKINGDIRECTORY}/cmd/trivy
 
 .PHONY: protoc
 protoc:
