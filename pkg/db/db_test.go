@@ -21,8 +21,8 @@ import (
 	"k8s.io/utils/clock"
 	clocktesting "k8s.io/utils/clock/testing"
 
-	"github.com/aquasecurity/trivy-db/pkg/db"
 	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/aquasecurity/trivy-db/pkg/db"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -114,12 +114,12 @@ func TestClient_NeedsUpdate(t *testing.T) {
 			expectedError: xerrors.New("the version of DB schema doesn't match. Local DB: 2, Expected: 1"),
 		},
 		{
-			name:          "--skip-update on the first run",
-			light:         false,
-			clock:         clocktesting.NewFakeClock(time.Date(2019, 10, 1, 0, 0, 0, 0, time.UTC)),
-			metadata:      db.Metadata{},
-			skip:          true,
-			expectedError: xerrors.New("--skip-update cannot be specified on the first run"),
+			name:     "--skip-update on the first run",
+			light:    false,
+			clock:    clocktesting.NewFakeClock(time.Date(2019, 10, 1, 0, 0, 0, 0, time.UTC)),
+			metadata: db.Metadata{},
+			skip:     true,
+			expected: false,
 		},
 		{
 			name:  "--skip-update with different schema version",
