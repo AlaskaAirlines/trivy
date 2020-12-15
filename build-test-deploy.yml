@@ -132,9 +132,9 @@ stages:
                   Write-Host "ONE MINUTE Nap waiting on ACR.  Slow?"
                   Start-Sleep -s 60
                   docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
-                  docker pull "aagacr.azurecrsandbox.io/platform/trivy:$(Build.BuildNumber)"
-                  docker tag "aagacr.azurecrsandbox.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:$(Build.BuildNumber)"
-                  docker tag "aagacr.azurecrsandbox.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:PreBaked"
+                  docker pull "aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)"
+                  docker tag "aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:$(Build.BuildNumber)"
+                  docker tag "aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:PreBaked"
 
                   gcloud auth activate-service-account --key-file $(Service_Account_Credentials.secureFilePath) --quiet
                   gcloud auth configure-docker "gcr.io" --quiet
