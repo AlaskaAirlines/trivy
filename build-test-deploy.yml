@@ -85,7 +85,7 @@ stages:
             steps:
 
             - powershell: |
-                popd '$(Pipeline.Workspace)/Prepped/'
+                pushd $(Pipeline.Workspace)/Prepped/
                 docker build --no-cache -t aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber) .
                 docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
                 docker push aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)
