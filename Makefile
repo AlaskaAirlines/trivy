@@ -48,8 +48,7 @@ fmt:
 
 .PHONY: build
 build:
-	# go build $(LDFLAGS) -o ./trivy ./cmd/trivy
-	go build $(LDFLAGS) -o ${SYSTEM_DEFAULTWORKINGDIRECTORY}/bin/trivy ${SYSTEM_DEFAULTWORKINGDIRECTORY}/cmd/trivy
+	env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GOARM=7 go build $(LDFLAGS) -o ./bin/trivy ./cmd/trivy
 
 .PHONY: protoc
 protoc:
