@@ -46,17 +46,17 @@ stages:
         #     targetType: 'inline'
         #     script: 'set +x; go get -v -u golang.org/x/lint/golint; GOPATH=/home/vsts/go make lint'
         #     workingDirectory: '$(System.DefaultWorkingDirectory)'
-        - task: Bash@3
-          displayName: 'Run Unit Tests'
-          inputs:
-            targetType: 'inline'
-            script: 'set +x; make test'
-            workingDirectory: '$(System.DefaultWorkingDirectory)'
+        # - task: Bash@3
+        #   displayName: 'Run Unit Tests'
+        #   inputs:
+        #     targetType: 'inline'
+        #     script: 'set +x; make test'
+        #     workingDirectory: '$(System.DefaultWorkingDirectory)'
         # SonarQube SonarQubeAnalyzeAndPublish Task
-        - template: YAML/Builds/Security/SonarQubeAnalyzeAndPublish.yml@templates 
-          parameters:
-            ProjectKey: 'ecomm_platform-trivy' 
-            ProjectName: 'ecomm_platform-trivy'
+        # - template: YAML/Builds/Security/SonarQubeAnalyzeAndPublish.yml@templates 
+        #   parameters:
+        #     ProjectKey: 'ecomm_platform-trivy' 
+        #     ProjectName: 'ecomm_platform-trivy'
         - task: Bash@3  
           displayName: 'Compile Trivy Binary'
           inputs:
