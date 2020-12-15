@@ -83,12 +83,19 @@ stages:
         runOnce:
           deploy:
             steps:
-            - template: YAML/Builds/Docker/Docker-1-UntrustedRegistry.yml@templates
-              parameters:
-                Dockerimagename: 'platform/trivy'
-                Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
-                Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile' 
-                Dockerimagetag: '$(Build.BuildNumber)'
+
+            - powershell: |
+                popd '$(Pipeline.Workspace)/Prepped/'
+                docker build --no-cache -t aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber) .
+                docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
+                docker push aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)
+              displayName: 'Building Docker Image Non Weasel'  
+            # - template: YAML/Builds/Docker/Docker-1-UntrustedRegistry.yml@templates
+            #   parameters:
+            #     Dockerimagename: 'platform/trivy'
+            #     Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
+            #     Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile' 
+            #     Dockerimagetag: '$(Build.BuildNumber)'
 
     - deployment: ReleaseImageT
       condition: succeeded()
@@ -124,10 +131,10 @@ stages:
             - powershell: |
                   Write-Host "ONE MINUTE Nap waiting on ACR.  Slow?"
                   Start-Sleep -s 60
-                  docker login -u $(AagacrUser) -p $(AagacrKey) aagacr.azurecr.io
-                  docker pull "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)"
-                  docker tag "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:$(Build.BuildNumber)"
-                  docker tag "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:PreBaked"
+                  docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
+                  docker pull "aagacr.azurecrsandbox.io/platform/trivy:$(Build.BuildNumber)"
+                  docker tag "aagacr.azurecrsandbox.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:$(Build.BuildNumber)"
+                  docker tag "aagacr.azurecrsandbox.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:PreBaked"
 
                   gcloud auth activate-service-account --key-file $(Service_Account_Credentials.secureFilePath) --quiet
                   gcloud auth configure-docker "gcr.io" --quiet
