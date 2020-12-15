@@ -126,13 +126,13 @@ stages:
                   Start-Sleep -s 60
                   docker login -u $(AagacrUser) -p $(AagacrKey) aagacr.azurecr.io
                   docker pull "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)"
-                  docker tag "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)"
-                  docker tag "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/platform/trivy:PreBaked"
+                  docker tag "aagacr.azurecr.io/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:$(Build.BuildNumber)"
+                  docker tag "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc17-app/trivy:PreBaked"
 
                   gcloud auth activate-service-account --key-file $(Service_Account_Credentials.secureFilePath) --quiet
                   gcloud auth configure-docker "gcr.io" --quiet
-                  docker push "gcr.io/aag-anthos-poc17-app/platform/trivy:$(Build.BuildNumber)"                    
-                  docker push "gcr.io/aag-anthos-poc17-app/platform/trivy:PreBaked"
+                  docker push "gcr.io/aag-anthos-poc17-app/trivy:$(Build.BuildNumber)"                    
+                  docker push "gcr.io/aag-anthos-poc17-app/trivy:PreBaked"
               displayName: 'Publish To GCR'
 
     - deployment: PublishToArtifactFeed

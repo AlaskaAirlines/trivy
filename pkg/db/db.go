@@ -14,10 +14,10 @@ import (
 	"golang.org/x/xerrors"
 	"k8s.io/utils/clock"
 
-	"github.com/aquasecurity/trivy-db/pkg/db"
 	"github.com/AlaskaAirlines/trivy/pkg/github"
 	"github.com/AlaskaAirlines/trivy/pkg/indicator"
 	"github.com/AlaskaAirlines/trivy/pkg/log"
+	"github.com/aquasecurity/trivy-db/pkg/db"
 )
 
 const (
