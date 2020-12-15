@@ -48,7 +48,7 @@ fmt:
 
 .PHONY: build
 build:
-	env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GOARM=7 go build $(LDFLAGS) -o ./bin/trivy ./cmd/trivy
+	env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GOARM=7 go build $(LDFLAGS) -o ${SYSTEM_DEFAULTWORKINGDIRECTORY}/bin/trivy ${SYSTEM_DEFAULTWORKINGDIRECTORY}/cmd/trivy
 
 .PHONY: protoc
 protoc:
@@ -68,3 +68,10 @@ $(GOBIN)/labeler:
 .PHONY: label
 label: $(GOBIN)/labeler
 	labeler apply misc/triage/labels.yaml -r aquasecurity/trivy -l 5
+
+
+
+
+
+
+	# go build $(LDFLAGS) -o ./trivy ./cmd/trivy
