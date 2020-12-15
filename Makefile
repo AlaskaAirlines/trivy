@@ -49,7 +49,7 @@ fmt:
 .PHONY: build
 build:
 	# go build $(LDFLAGS) -o ./trivy ./cmd/trivy
-	go build $(LDFLAGS) -o ./bin/trivy ./cmd/trivy
+	go build $(LDFLAGS) -o ${SYSTEM_DEFAULTWORKINGDIRECTORY}/bin/trivy ${SYSTEM_DEFAULTWORKINGDIRECTORY}/cmd/trivy
 
 .PHONY: protoc
 protoc:
