@@ -10,6 +10,7 @@ RUN chmod 777 /usr/local/bin/trivy
 RUN mkdir -p /root/.cache && trivy --download-db-only --cache-dir /root/.cache/
 RUN mkdir -p /var/lib/trivy && trivy --download-db-only --cache-dir /var/lib/trivy
 RUN chmod 777 -R /var/lib/trivy/
+RUN chmod 777 -R /root/.cache/
 
 RUN adduser -D TheGrinch
 USER TheGrinch
