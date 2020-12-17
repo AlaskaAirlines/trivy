@@ -63,6 +63,13 @@ stages:
             targetType: 'inline'
             script: 'set +x; make build'
             workingDirectory: '$(System.DefaultWorkingDirectory)'
+        - task: DownloadSecureFile@1
+          name: Service_Account_Credentials
+          displayName: 'Download Service Account Credentials'
+          inputs:
+            secureFile: 'service_auth.json'            
+        - script: cp $(Service_Account_Credentials.secureFilePath) $(Build.SourcesDirectory)/bin
+          displayName: Place Service Creds
         - publish: $(Build.SourcesDirectory)
           artifact: Prepped
           displayName: 'Uploading Source With Image'        
@@ -83,19 +90,18 @@ stages:
         runOnce:
           deploy:
             steps:
-
-            - script: |
-                pushd $(Pipeline.Workspace)/Prepped/
-                docker build --no-cache -t aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber) .
-                docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
-                docker push aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)
-              displayName: 'Building Docker Image Non Weasel'  
-            # - template: YAML/Builds/Docker/Docker-1-UntrustedRegistry.yml@templates
-            #   parameters:
-            #     Dockerimagename: 'platform/trivy'
-            #     Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
-            #     Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile' 
-            #     Dockerimagetag: '$(Build.BuildNumber)'
+            # - script: |
+            #     pushd $(Pipeline.Workspace)/Prepped/
+            #     docker build --no-cache -t aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber) .
+            #     docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
+            #     docker push aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)
+            #   displayName: 'Building Docker Image Non Weasel'  
+            - template: YAML/Builds/Docker/Docker-1-UntrustedRegistry.yml@templates
+              parameters:
+                Dockerimagename: 'platform/trivy'
+                Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
+                Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile' 
+                Dockerimagetag: '$(Build.BuildNumber)'
 
     - deployment: ReleaseImageT
       condition: succeeded()
