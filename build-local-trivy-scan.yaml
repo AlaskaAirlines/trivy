@@ -1,0 +1,78 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages: 
+
+- stage: DockerBuildAndValidate
+  dependsOn: BuildAndPublish
+  displayName: Compile Container Images
+  jobs:
+    - deployment: ReleaseImageU
+      displayName: Docker Image Untrusted
+      environment: 'trivy-local-scan-build'
+      pool:
+        vmImage: 'ubuntu-latest' # Set value in Azure Dev Ops Build Pipeline
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            # - script: |
+            #     pushd $(Pipeline.Workspace)/Prepped/
+            #     docker build --no-cache -t aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber) .
+            #     docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
+            #     docker push aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)
+            #   displayName: 'Building Docker Image Non Weasel'  
+            - template: YAML/Builds/Docker/Docker-1-UntrustedRegistry.yml@templates
+              parameters:
+                Dockerimagename: 'platform/trivy-local-scan'
+                Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
+                Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile-local-scan' 
+                Dockerimagetag: '$(Build.BuildNumber)'
+
+    - deployment: ReleaseImageT
+      condition: succeeded()
+      dependsOn: ReleaseImageU
+      displayName: Docker Image Trusted
+      environment: 'trivy-build'
+      pool:
+        name: '$(AquaPoolName)' # Set value in Azure Dev Ops Build Pipeline
+      strategy:
+        runOnce:
+          deploy:
+            steps:              
+            - template: YAML/Builds/Docker/Docker-2-TrustedRegistry.yml@templates
+              parameters:
+                Dockerimagename: 'platform/trivy-local-scan'
+                Dockerimagetag: '$(Build.BuildNumber)'
+
+    - deployment: DeployImageToGCR
+      dependsOn: ReleaseImageT
+      displayName: Pull Tested Image Push to GCR
+      environment: 'trivy-build'
+      pool:
+        vmImage: 'ubuntu-latest' # Set value in Azure Dev Ops Build Pipeline
+      strategy:
+        runOnce:
+          deploy:
+            steps:
+            - task: DownloadSecureFile@1
+              name: Service_Account_Credentials
+              displayName: 'Download Service Account Credentials'
+              inputs:
+                secureFile: 'service_auth.json'
+            - powershell: |
+                  Write-Host "ONE MINUTE Nap waiting on ACR.  Slow?"
+                  Start-Sleep -s 60
+                  docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
+                  docker pull "aagacrsandbox.azurecr.io/platform/trivy-local-scan:$(Build.BuildNumber)"
+                  docker tag "aagacrsandbox.azurecr.io/platform/trivy-local-scan:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc18-app/trivy-local-scan:$(Build.BuildNumber)"
+                  docker tag "aagacrsandbox.azurecr.io/platform/trivy-local-scan:$(Build.BuildNumber)" "gcr.io/aag-anthos-poc18-app/trivy-local-scan:PreBaked"
+
+                  gcloud auth activate-service-account --key-file $(Service_Account_Credentials.secureFilePath) --quiet
+                  gcloud auth configure-docker "gcr.io" --quiet
+                  docker push "gcr.io/aag-anthos-poc18-app/trivy-local-scan:$(Build.BuildNumber)"                    
+                  docker push "gcr.io/aag-anthos-poc18-app/trivy-local-scan:PreBaked"
+              displayName: 'Publish To GCR'     
