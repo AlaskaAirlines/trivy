@@ -4,8 +4,15 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
-stages: 
+resources:
+  repositories:
+    - repository: self
+    - repository: templates
+      type: git
+      name: SoftwareTransformation/DevOps
+      ref: refs/heads/master
 
+stages: 
 - stage: DockerBuildAndValidate
   dependsOn: BuildAndPublish
   displayName: Compile Container Images
