@@ -12,6 +12,10 @@ resources:
       name: SoftwareTransformation/DevOps
       ref: refs/heads/master
 
+variables:
+- group: PipelineVariables
+- group: Platform_Prod_Secrets
+
 stages: 
 - stage: DockerBuildAndValidate
   dependsOn: BuildAndPublish
