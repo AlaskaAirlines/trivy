@@ -128,17 +128,12 @@ stages:
       strategy:
         runOnce:
           deploy:
-            steps:        
+            steps:
             - task: DownloadSecureFile@1
               name: Service_Account_Credentials
               displayName: 'Download Service Account Credentials'
               inputs:
                 secureFile: 'service_auth.json'
-            - script: cp $(Service_Account_Credentials.secureFilePath) $(Build.SourcesDirectory)/bin
-              displayName: Place Service Creds
-            - publish: $(Build.SourcesDirectory)
-              artifact: Prepped
-              displayName: 'Uploading Source With Image'
             - powershell: |
                   Write-Host "ONE MINUTE Nap waiting on ACR.  Slow?"
                   Start-Sleep -s 60
