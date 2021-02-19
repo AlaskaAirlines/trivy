@@ -37,7 +37,7 @@ stages:
             - script: cp $(Service_Account_Credentials.secureFilePath) $(Build.SourcesDirectory)/bin
               displayName: Place Service Creds
             - script: |
-                ls -al ./ 
+                ls -al ../ 
                 pwd
                 ls -al $(Build.SourcesDirectory)
                 pwd
