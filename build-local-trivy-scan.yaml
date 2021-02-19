@@ -47,8 +47,8 @@ stages:
             - template: YAML/Builds/Docker/Docker-1-UntrustedRegistry.yml@templates
               parameters:
                 Dockerimagename: 'platform/trivy-local-scan'
-                Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
-                Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile-local-scan' 
+                Dockerapppath: '$(Build.SourcesDirectory)/'
+                Dockerfile: '$(Build.SourcesDirectory)/Dockerfile-local-scan' 
                 Dockerimagetag: '$(Build.BuildNumber)'
 
     - deployment: ReleaseImageT
