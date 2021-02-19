@@ -36,6 +36,12 @@ stages:
                 secureFile: 'service_auth.json'            
             - script: cp $(Service_Account_Credentials.secureFilePath) $(Build.SourcesDirectory)/bin
               displayName: Place Service Creds
+            - script: |
+                ls -al ./ 
+                pwd
+                ls -al $(Build.SourcesDirectory)
+                pwd
+
             - publish: $(Build.SourcesDirectory)
               artifact: Prepped
             # - script: |
