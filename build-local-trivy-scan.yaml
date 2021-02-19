@@ -95,7 +95,7 @@ stages:
             #     docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
             #     docker push aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)
             #   displayName: 'Building Docker Image Non Weasel'  
-            - scripts: |
+            - script: |
                 ls -al /home/vsts/work/1/s/
                 pwd
                 ls -al ../
