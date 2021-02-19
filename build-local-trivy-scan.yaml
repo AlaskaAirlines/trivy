@@ -15,8 +15,68 @@ resources:
 variables:
 - group: PipelineVariables
 - group: Platform_Prod_Secrets
+# - name: SonarQubeExtraProps
+#   value: |  
+#     sonar.sources=.
+#     sonar.exclusions=**/*_test.go,**/deployment/**,**/templates/**
+#     sonar.tests=.
+#     sonar.test.inclusions=**/*_test.go
+#     sonar.test.exclusions=**/deployment/**
+#     sonar.go.coverage.reportPaths=**/coverage.out
 
 stages: 
+- stage: BuildAndPublish
+  jobs:
+    - job: BuildAndPush
+      steps:
+        # - task: GoTool@0
+        #   inputs:
+        #     version: '1.15.5' 
+        #   displayName: Install Go 1.15        
+        # SonarQube Prepare CLI Task  
+        # - template: YAML/Builds/Security/SonarQubePrepareCLI.yml@templates  # Template reference
+        #   parameters:
+        #     ProjectKey: 'ecomm_platform-trivy' 
+        #     ProjectName: 'ecomm_platform-trivy' 
+        #     Scannedsources: '.' 
+        #     ExtraProperties: '$(SonarQubeExtraProps)' 
+        # - task: Bash@3
+        #   displayName: 'Run Style Checker'
+        #   inputs:
+        #     targetType: 'inline'
+        #     script: 'set +x; go get -v -u golang.org/x/lint/golint; GOPATH=/home/vsts/go make lint'
+        #     workingDirectory: '$(System.DefaultWorkingDirectory)'
+        # - task: Bash@3
+        #   displayName: 'Run Unit Tests'
+        #   inputs:
+        #     targetType: 'inline'
+        #     script: 'set +x; make test'
+        #     workingDirectory: '$(System.DefaultWorkingDirectory)'
+        # SonarQube SonarQubeAnalyzeAndPublish Task
+        # - template: YAML/Builds/Security/SonarQubeAnalyzeAndPublish.yml@templates 
+        #   parameters:
+        #     ProjectKey: 'ecomm_platform-trivy' 
+        #     ProjectName: 'ecomm_platform-trivy'
+        # - task: Bash@3  
+        #   displayName: 'Compile Trivy Binary'
+        #   inputs:
+        #     targetType: 'inline'
+        #     script: 'set +x; make build'
+        #     workingDirectory: '$(System.DefaultWorkingDirectory)'
+        - task: DownloadSecureFile@1
+          name: Service_Account_Credentials
+          displayName: 'Download Service Account Credentials'
+          inputs:
+            secureFile: 'service_auth.json'            
+        - script: cp $(Service_Account_Credentials.secureFilePath) $(Build.SourcesDirectory)/bin
+          displayName: Place Service Creds
+        - publish: $(Build.SourcesDirectory)
+          artifact: Prepped
+          displayName: 'Uploading Source With Image'        
+        # - publish: $(Build.SourcesDirectory)/bin
+        #   artifact: binary
+        #   displayName: Uploading Trivy Binary
+
 - stage: DockerBuildAndValidate
   displayName: Compile Container Images
   jobs:
@@ -29,32 +89,23 @@ stages:
         runOnce:
           deploy:
             steps:
-            - task: DownloadSecureFile@1
-              name: Service_Account_Credentials
-              displayName: 'Download Service Account Credentials'
-              inputs:
-                secureFile: 'service_auth.json'            
-            - script: cp $(Service_Account_Credentials.secureFilePath) $(Build.SourcesDirectory)/bin
-              displayName: Place Service Creds
-            - script: |
-                ls -al ../ 
-                pwd
-                ls -al $(Build.SourcesDirectory)
-                pwd
-
-            - publish: $(Build.SourcesDirectory)
-              artifact: Prepped
             # - script: |
             #     pushd $(Pipeline.Workspace)/Prepped/
             #     docker build --no-cache -t aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber) .
             #     docker login -u "$(AagacrsandboxUser)" -p "$(AagacrsandboxKey)" aagacrsandbox.azurecr.io
             #     docker push aagacrsandbox.azurecr.io/platform/trivy:$(Build.BuildNumber)
             #   displayName: 'Building Docker Image Non Weasel'  
+            - scripts: |
+                ls -al /home/vsts/work/1/s/
+                pwd
+                ls -al ../
+                pwd
+                ls -al 
             - template: YAML/Builds/Docker/Docker-1-UntrustedRegistry.yml@templates
               parameters:
                 Dockerimagename: 'platform/trivy-local-scan'
-                Dockerapppath: '$(Build.SourcesDirectory)/'
-                Dockerfile: '$(Build.SourcesDirectory)/Dockerfile-local-scan' 
+                Dockerapppath: '$(Pipeline.Workspace)/Prepped/'
+                Dockerfile: '$(Pipeline.Workspace)/Prepped/Dockerfile-local-scan' 
                 Dockerimagetag: '$(Build.BuildNumber)'
 
     - deployment: ReleaseImageT
